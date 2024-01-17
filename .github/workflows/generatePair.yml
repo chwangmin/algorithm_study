@@ -101,4 +101,6 @@ jobs:
             done
           MESSAGE+="|\\n"
           MESSAGE+="\\n"
+
+           curl -X POST -H 'Content-type: application/json' --data "{\"text\": $MESSAGE}" ${{ secrets.WEBHOOK }}
           
