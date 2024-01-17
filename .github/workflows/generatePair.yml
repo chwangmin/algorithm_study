@@ -1,6 +1,7 @@
 name: Create Random Pair
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 9 * * 5' # 매주 금요일 9시 0분에 작업 실행
 
