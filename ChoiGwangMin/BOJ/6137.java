@@ -30,21 +30,25 @@ public class Main {
 			}
 			else {
 				int tmpLeft = left; int tmpRight = right;
-				boolean check = true;
-				while(alphaString[tmpLeft] == alphaString[tmpRight]) {
-					if (tmpRight > 0) tmpRight--;
-					if (tmpLeft < alphaSize-1) tmpLeft++;
-					
-					if (alphaString[tmpLeft] < alphaString[tmpRight]) check = true;
-					else if (alphaString[tmpLeft] > alphaString[tmpRight]) check = false;
+				while(tmpLeft <= tmpRight) {
+					if (alphaString[tmpLeft] < alphaString[tmpRight]) {
+						answerString[idx++] = alphaString[left++];
+						break;
+					} else if (alphaString[tmpLeft] > alphaString[tmpRight]) {
+						answerString[idx++] = alphaString[right--];
+						break;
+					} else {
+						tmpLeft++;
+						tmpRight--;
+					}
 				}
-				if (check) answerString[idx++] = alphaString[left++];
-				else answerString[idx++] = alphaString[right--];
 			}
 		}
-		for (int i = 1; i < alphaSize + 1; i++) {
-			System.out.print(answerString[i - 1]);
-			if (i % 80 == 0) {
+		int checkEighty = 0;
+		for (int i = 0; i < alphaSize; i++) {
+			System.out.print(answerString[i]);
+			checkEighty++;
+			if (checkEighty % 80 == 0) {
 				System.out.println();
 			}
 		}
