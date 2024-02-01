@@ -4,11 +4,12 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	final static int DIRECTS[][] = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
+	final static int DIRECTS[][] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
 	final static int DIRECT_NUM = 4, DIRECT_UP = 0, DIRECT_RIGHT = 1, DIRECT_DOWN = 2, DIRECT_LEFT = 3;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
-	static int mapSizeX, mapSizeY, roomMap[][], startX, startY, direct;
+	static int mapSizeX, mapSizeY, startX, startY, direct;
+	static int[][] roomMap;
 	static int answer = 0;
 
 	public static void main(String[] args) throws IOException {
@@ -37,25 +38,22 @@ public class Main {
 				continue;
 			}
 
-			while (true) {
-				if (direct == DIRECT_UP) {
-					direct = DIRECT_LEFT;
-				} else if (direct == DIRECT_RIGHT) {
-					direct = DIRECT_UP;
-				} else if (direct == DIRECT_DOWN) {
-					direct = DIRECT_RIGHT;
-				} else if (direct == DIRECT_LEFT) {
-					direct = DIRECT_DOWN;
-				}
+			if (direct == DIRECT_UP) {
+				direct = DIRECT_LEFT;
+			} else if (direct == DIRECT_RIGHT) {
+				direct = DIRECT_UP;
+			} else if (direct == DIRECT_DOWN) {
+				direct = DIRECT_RIGHT;
+			} else if (direct == DIRECT_LEFT) {
+				direct = DIRECT_DOWN;
+			}
 
-				int checkX = startX + DIRECTS[direct][0];
-				int checkY = startY + DIRECTS[direct][1];
+			int checkX = startX + DIRECTS[direct][0];
+			int checkY = startY + DIRECTS[direct][1];
 
-				if (roomMap[checkX][checkY] == 0) {
-					startX = checkX;
-					startY = checkY;
-					break;
-				}
+			if (roomMap[checkX][checkY] == 0) {
+				startX = checkX;
+				startY = checkY;
 			}
 
 		}
