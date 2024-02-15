@@ -41,34 +41,27 @@ public class Main {
 			int pLeft = parentList[left];
 			int pRight = parentList[right];
 			if (command == 0) {
-				while (pLeft != pRight) {
-					if (pLeft < pRight) {
-						parentList[right] = pLeft;
-					} else {
-						parentList[left] = pRight;
-					}
-					pLeft = parentList[left];
-					pRight = parentList[right];
+				if (find(left) < find(right)) {
+					parentList[parentList[left]] = parentList[right];
+					continue;
 				}
+				parentList[parentList[right]] = parentList[left];
 				continue;
 			}
-			
-			while (pLeft != left) {
-				 pLeft = parentList[pLeft];
-				 left = pLeft;
-			}
-			
-			while (pRight != right) {
-				 pRight = parentList[pRight];
-				 right = pRight;
-			}
 
-			if (parentList[right] == parentList[left]) {
+			if (find(left) == find(right)) {
 				sb.append("YES\n");
 				continue;
 			}
 			sb.append("NO\n");
 		}
 		System.out.println(sb);
+	}
+	
+	private static int find(int x) {
+		if (parentList[x] != x) {
+			parentList[x] = find(parentList[x]);
+		}
+		return parentList[x];
 	}
 }
