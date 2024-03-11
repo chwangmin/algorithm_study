@@ -33,7 +33,7 @@ class Solution {
         int startNode = 0;
         
         for(int i = 1; i < 1_000_001; i++){
-            if (nodes[i].inNodeNum == 0){
+            if (nodes[i].inNodeNum == 0 && nodes[i].outNodes.size() > 1){
                 startNode = i;
                 break;
             }
@@ -65,6 +65,7 @@ class Solution {
                 int currentNode = q.poll();
             
                 for (int j = 0; j < nodes[currentNode].outNodes.size(); j++){
+                    
                     int currentGetNode = nodes[currentNode].outNodes.get(j);
                     
                     if (visited[currentGetNode]){
